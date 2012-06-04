@@ -1,0 +1,42 @@
+# Copyright (c) 2012, the Dart project authors.  Please see the AUTHORS file
+# for details. All rights reserved. Use of this source code is governed by a
+# BSD-style license that can be found in the LICENSE file.
+
+[ $arch == simarm ]
+*: Skip
+
+[ $compiler == frog || $compiler == dart2js ]
+# Dartdoc only runs on the VM.
+dartdoc_test: Skip
+markdown_test: Skip
+
+[ $compiler == frog ]
+dummy_compiler_test: Fail
+
+[ $compiler == frog ]
+utf8_test: Crash
+
+[ $compiler == dart2js ]
+utf8_test: Fail # compiler cancelled: Unhandled non-BMP character: U+10412
+
+[ $compiler == dart2js && $checked ]
+dummy_compiler_test: Fail
+
+[ $runtime == vm || $compiler == dartc || ($compiler == none && $runtime == drt) ]
+# TODO(rnystrom): Right now, the VM tests can't access frog/ and client/ which
+# dartdoc uses, so disable for now. Once the deps files are unified this should
+# be fixed.
+dartdoc_test: Skip
+markdown_test: Skip
+
+[ $compiler == none && $runtime == drt ]
+dummy_compiler_test: Fail # Issue 2264.
+
+[ $compiler == dartc ]
+dummy_compiler_test: Fail # Issue 2263.
+
+[ $compiler == dart2js && $browser ]
+*: Skip
+
+[ $compiler == frog && $runtime == none ]
+*: Skip

@@ -1,0 +1,50 @@
+# Copyright (c) 2012, the Dart project authors.  Please see the AUTHORS file
+# for details. All rights reserved. Use of this source code is governed by a
+# BSD-style license that can be found in the LICENSE file.
+
+[ $compiler == dart2js ]
+class_test: Fail
+statements_test: Fail
+typed_locals_test: Fail
+
+[ $mode == debug ]
+operator_test: Skip
+string_interpolation_test: Skip
+
+[ $compiler == frog ]
+*: Skip
+
+[ $compiler == dart2js && $runtime == none ]
+*: Fail, Pass # TODO(ahe): Triage these tests.
+
+[ $compiler == dartc || $runtime == vm ]
+cascade_precedence_test: Fail
+
+[ $runtime == opera ]
+*: Skip
+
+[ $compiler == dart2js && $runtime == ff ]
+naming_test: Fail # BUG(3305)
+
+[ $compiler == dart2js && $runtime == ie ]
+12_test: Skip # BUG(3304): Times out.
+33_test: Skip # BUG(3304): Times out.
+43_test: Skip # BUG(3304): Times out.
+7_test: Skip # BUG(3304): Times out.
+bailout_test: Skip # BUG(3304): Times out.
+break_test: Skip # BUG(3304): Times out.
+class_test: Skip # BUG(3304): Times out.
+equals_test: Skip # BUG(3304): Times out.
+foo7_test: Skip # BUG(3304): Times out.
+function_parameters_test: Skip # BUG(3304): Times out.
+literals_test: Skip # BUG(3304): Times out.
+locals_test: Skip # BUG(3304): Times out.
+not_equals_test: Skip # BUG(3304): Times out.
+phi_test: Skip # BUG(3304): Times out.
+regression_2913_test: Skip # BUG(3304): Times out.
+send_test: Skip # BUG(3304): Times out.
+to_string_test: Skip # BUG(3304): Times out.
+naming_test: Fail # BUG(3305)
+
+[ $compiler == dart2js && $runtime == safari ]
+naming_test: Fail # BUG(3305)

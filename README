@@ -1,0 +1,19 @@
+This is the repository of the Dart programming language and its associated
+tools, libraries, and samples.
+
+For license information, please see LICENSE.
+
+You can find more about Dart online at dartlang.org or code.google.com/p/dart.
+
+Here's a brief guide to what's in here:
+
+compiler/      dartc static analyzer
+corelib/       core libraries (collections, built-ins...)
+editor/        the Eclipse-based standalone Dart IDE
+language/      language specification
+lib/           libraries (dart2js compiler, html, isolate, json, math, ...)
+runtime/       the Dart VM and code for running it as a standalone app
+samples/       sample Dart programs 
+tests/         automated tests
+third_party/   external dependencies
+tools/         build scripts, text editor support files, etc.

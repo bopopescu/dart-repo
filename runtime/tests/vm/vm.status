@@ -1,0 +1,30 @@
+# Copyright (c) 2012, the Dart project authors.  Please see the AUTHORS file
+# for details. All rights reserved. Use of this source code is governed by a
+# BSD-style license that can be found in the LICENSE file.
+
+# When a spawned isolate throws an uncaught exception, we terminate the vm.
+cc/RunLoop_ExceptionChild: Fail
+
+[ $arch == x64 ]
+cc/IsolateInterrupt: Skip
+
+# The following section refers to the dart vm tests which live under
+# runtime/tests/vm/dart.
+
+[ $system == windows ]
+cc/Dart2JSCompileAll: Skip
+
+[ $runtime == drt ]
+dart/import_map_test: Skip
+dart/isolate_mirror_local_test: Skip
+
+[ $compiler == dart2js || $compiler == frog || $compiler == dartc ]
+dart/import_map_test: Skip # compilers not aware of import maps.
+dart/isolate_mirror*: Skip # compilers not aware of dart:mirrors
+dart/byte_array_test: Skip # compilers not aware of byte arrays
+
+[ $arch == arm ]
+dart/*: Skip
+
+[ $arch == simarm ]
+dart/*: Skip

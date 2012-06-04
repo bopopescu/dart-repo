@@ -1,0 +1,82 @@
+# Copyright (c) 2012, the Dart project authors.  Please see the AUTHORS file
+# for details. All rights reserved. Use of this source code is governed by a
+# BSD-style license that can be found in the LICENSE file.
+
+test_runner_test: Skip  # Issue 3216: Occasionally fails and leads to runaway processes.
+timeout_test: Skip  # Timeout test for testing the test runner.
+fail_test: Fail, OK # Fails intentionally
+out_of_memory_test: Skip # Issue 2345
+
+package/invalid_uri_test: Fail, OK # Fails intentionally
+
+io/http_test: Pass, Fail  # Issue 2987
+
+[ $runtime == vm && $checked ]
+# These tests have type errors on purpose.
+io/process_invalid_arguments_test: Fail, OK
+io/directory_invalid_arguments_test: Fail, OK
+io/file_invalid_arguments_test: Fail, OK
+io/socket_invalid_arguments_test: Fail, OK
+# These test have type errors on purpose and take very long to run in
+# checked mode with no benefit. Skip.
+io/file_fuzz_test: Skip
+io/directory_fuzz_test: Skip
+
+[ $runtime == vm]
+io/many_echo_server_test: Skip        # Bug 5103754
+# These tests fail, crash, and timeout to test the testing infrastructure.
+io/test_extension_test: Fail  # shared library in wrong place (issue 1817)
+
+[ $runtime == vm && $system == macos]
+# This test fails with "Too many open files" on the Mac OS buildbot.
+io/socket_many_connections_test: Skip
+io/test_extension_test: Skip  # Extensions not implemented on MacOS
+io/http_server_handler_test: Skip # Issue 2637
+
+[ $runtime == vm && $system == windows]
+io/test_extension_test: Skip  # Extensions not implemented on Windows
+io/http_shutdown_test: Skip  # Currently times out on windows
+io/file_system_links_test: Skip  # No links on Windows.
+io/http_connection_header_test: Pass, Fail  # Issue 2959
+
+[ $compiler == none && $runtime == drt ]
+io/*: Skip # Don't run tests using dart:io in the browser
+crypto/*: Skip # Don't run tests using dart:io in the browser
+package/*: Skip # Do not run those in Dartium.
+
+[ $compiler == dartc]
+*: Skip
+
+[ $compiler == frog ]
+*: Skip
+
+[ $arch == x64 ]
+medium_integer_test: Fail # Issue 1146.
+
+
+[ $arch == arm ]
+*: Skip
+
+
+[ $arch == simarm ]
+*: Skip
+
+[ $compiler == dart2js ]
+medium_integer_test: Fail, OK # cannot resolve type Mint
+io/test_extension_test: Fail, OK # dart-ext:test_extension: Illegal argument(s): dart-ext:test_extension
+io/test_runner_test: Fail, OK # library not found dart:builtin
+
+[ $compiler == dart2js && $runtime == d8 ]
+assert_test: Fail # Assert not implemented
+byte_array_test: Fail, OK # ByteArray
+deoptimization_test: Fail, OK # Requires bigint.
+out_of_memory_test: Fail, OK # d8 handles much larger arrays than Dart VM.
+io/http_parser_test: Fail, OK # ByteArray
+io/options_test: Fail, OK # Cannot pass options to d8.
+
+[ $compiler == dart2js && $runtime == none ]
+fail_test: Skip # fails only at runtime, overrides default expectation from standalone.status
+io/options_test: Fail
+
+[$compiler == dart2js && $browser ]
+*: Skip

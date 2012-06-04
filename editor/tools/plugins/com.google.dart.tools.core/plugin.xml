@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="workingCopyOwner" name="Working Copy Owner" schema="schema/workingCopyOwner.exsd"/>
+   
+	<extension
+			point="org.eclipse.core.resources.natures"
+			id="dartNature"
+			name="%dart.nature.name">
+		<runtime>
+			<run class="com.google.dart.tools.core.internal.model.DartProjectNature"/>
+		</runtime>
+	</extension>
+
+	<extension
+			point="org.eclipse.core.resources.builders"
+			id="dartBuilder"
+			name="%dart.builder.name">
+		<builder>
+			<run class="com.google.dart.tools.core.internal.builder.DartBuilder"/>
+		</builder>
+	</extension>
+
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            id="com.google.dart.tools.core.dartSourceFile"
+            name="%dart.contentType.sourceFile.name"
+            base-type="org.eclipse.core.runtime.text"
+            file-extensions="dart"
+            default-charset="UTF-8"/>
+   </extension>
+
+	<extension
+			point="org.eclipse.team.core.fileTypes">
+		<fileTypes extension="dart" type="text"/>
+	</extension>
+
+	<extension id="problem" name="%dart.marker.problem.name" point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.core.resources.problemmarker"/>
+		<super type="org.eclipse.core.resources.textmarker"/>
+		<persistent value="true"/>
+		<attribute name="id"/>
+		<attribute name="flags"/>
+		<attribute name="arguments"/>
+		<attribute name="categoryId"/>
+	</extension>   
+
+	<extension id="task" name="%dart.marker.task.name" point="org.eclipse.core.resources.markers">
+	    <super type="org.eclipse.core.resources.taskmarker"/> 
+	    <persistent value="true"/>
+	</extension>
+ <extension
+       id="refinableType"
+       name="%dart.marker.refinableType.name"
+       point="org.eclipse.core.resources.markers">
+    <super
+          type="org.eclipse.core.resources.textmarker">
+    </super>
+    <persistent
+          value="false">
+    </persistent>
+ </extension>
+
+</plugin>
