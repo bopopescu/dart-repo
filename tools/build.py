@@ -106,6 +106,8 @@ def Main():
         if os.path.exists('dart-%s.gyp' % CurrentDirectoryBaseName()):
           project_file = 'dart-%s.xcodeproj' % CurrentDirectoryBaseName()
         args = ['xcodebuild',
+                '-sdk',
+                'macosx10.7',
                 '-project',
                 project_file,
                 '-target',

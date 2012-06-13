@@ -8,8 +8,8 @@
       'Dart_Base': {
         'xcode_settings': {
           # To switch to the LLVM based backend change the two lines below.
-          #'GCC_VERSION': 'com.apple.compilers.llvmgcc42',
-          'GCC_VERSION': '4.2',
+          'GCC_VERSION': 'com.apple.compilers.llvmgcc42',
+          #'GCC_VERSION': '4.2',
           'GCC_C_LANGUAGE_STANDARD': 'ansi',
           'GCC_ENABLE_CPP_EXCEPTIONS': 'NO', # -fno-exceptions
           'GCC_ENABLE_CPP_RTTI': 'NO', # -fno-rtti
